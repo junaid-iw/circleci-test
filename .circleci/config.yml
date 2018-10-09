@@ -1,5 +1,8 @@
-deployment:
-  prod:
-    branch: master
-    commands:
-      - aws s3 sync /home/ubuntu/circle-ci-aws-s3-deploy s3://iwc-ci-demo --region us-east-1
+  deploy:
+    machine:
+      enabled: true
+    working_directory: ~/circle-tmp-folder
+    steps:
+       - run:
+          name: Deploy
+          command: 'aws s3 sync ${source}/ s3://iwc-ci-demo --region eu-west-1'
