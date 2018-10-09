@@ -1,5 +1,8 @@
-deployment:
-  production:
-    tag: /.*/
-    commands:
-      - aws s3 sync / s3://iwc-ci-demo
+jobs:
+  # build job omitted for brevity
+  deploy:
+    working_directory: /
+    steps:
+      - run:
+          name: Deploy to S3
+          command: aws s3 sync index.html s3://iwc-ci-demo --delete
