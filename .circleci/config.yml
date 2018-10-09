@@ -1,6 +1,6 @@
 
 deploy:
-  working_directory: /
+  working_directory: ~/repo
   steps:
     - run:
         name: Deploy to S3
