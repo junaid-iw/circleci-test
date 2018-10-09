@@ -1,7 +1,20 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.10
 
-deploy:
-  working_directory: ~/repo
-  steps:
-    - run:
-        name: Deploy to S3
-        command: aws s3 sync index.html s3://iwc-ci-demo --delete
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+    # install python and awscli
+      - run:
+          name: Install dependencies
+          working_directory: /
+          command: sudo apt-get -y -qq install awscli
+
+      - run:
+          name: Deploy application
+          command: aws s3 cp junaid.html s3://iwc-ci-demo
